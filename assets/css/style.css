@@ -1,0 +1,11 @@
+.background {
+	background-color: yellow;
+	color: blue;
+	font-family: Impact, Charcoal, sans-serif;
+}
+
+body {
+	background-image: url("../images/background.jpg");
+	background-size: 100%, 100%;
+	
+}
