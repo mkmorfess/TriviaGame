@@ -6,6 +6,7 @@ var timer = {
 
 	number: 5,
 	running: false,
+	question: ["How many inches in a foot?", "What are you doing?"],
 
 	timer: function() {
 
@@ -25,17 +26,19 @@ var timer = {
 		clearInterval(intervalId);
 		this.running = false;
 		this.number = 5;
-		$("#display").html("<h2>" + this.number + "</h2>");
+		$("#display").html("<h2></h2>");
 
 
 	},
 
 
-	question: function() {
+	// question: function(question) {
 
-		$()
+	// 	var randNum = Math.floor(Math.random() * 2)
 
-	}
+	// 	$('#question').append("<h2>" + this.question + "</h2>")
+
+	// }
 
 };
 
@@ -46,6 +49,8 @@ var timer = {
 		intervalId = setInterval(function() {
 			timer.timer()
 		}, 1000);
+
+		// timer.question(randNum);
 	
 		if (timer.number === 0) {
 			timer.number = 5;
