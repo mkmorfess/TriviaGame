@@ -1,11 +1,14 @@
 .background {
-	background-color: yellow;
-	color: blue;
+	color: black;
 	font-family: Impact, Charcoal, sans-serif;
 }
 
 body {
-	background-image: url("../images/background.jpg");
+	background: white;
 	background-size: 100%, 100%;
 	
+}
+
+button {
+	margin: 5px;
 }
