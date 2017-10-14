@@ -12,3 +12,7 @@ body {
 button {
 	margin: 5px;
 }
+
+#score {
+	margin-top: 20px;
+}

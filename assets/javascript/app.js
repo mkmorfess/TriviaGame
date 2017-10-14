@@ -6,7 +6,14 @@ var timer = {
 
 	number: 5,
 	running: false,
-	question: ["How many inches in a foot?", "What are you doing?"],
+	score: 0,
+	questions: { 
+		question1: ["How many inches in a foot?"],
+		answer1: [12, 10, 9, 4],
+		question2: ["Guess my favorite color!"],
+		answer2: ["Blue", "Green", "Purple", "Orange"],
+
+		},
 
 	timer: function() {
 
@@ -26,19 +33,37 @@ var timer = {
 		clearInterval(intervalId);
 		this.running = false;
 		this.number = 5;
+		this.score = 0;
 		$("#display").html("<h2></h2>");
+		$("#score").html(" ")
+		$("#question").html(" ")
 
 
 	},
 
+	question: function() {
 
-	// question: function(question) {
+		var choices = "<p class='text-center'>1." + timer.questions.question1[0] + "</p>" +
+									"<ul class='text-center'>" +
+										"<input type='radio' name='q1' value='a' class='q1a'><label for='q1a'>" + timer.questions.answer1[0] + "</label><br/>" +
+										"<input type='radio' name='q1' value='b' class='q1b'><label for='q1b'>" + timer.questions.answer1[1] + "</label><br/>" +
+										"<input type='radio' name='q1' value='c' class='q1c'><label for='q1c'>" + timer.questions.answer1[2] + "</label><br/>" +
+										"<input type='radio' name='q1' value='d' class='q1d'><label for='q1d'>" + timer.questions.answer1[3] + "</label><br/>" +
+									"</ul>"
 
-	// 	var randNum = Math.floor(Math.random() * 2)
 
-	// 	$('#question').append("<h2>" + this.question + "</h2>")
+		$("#question").append(choices)
 
-	// }
+		$(".q1a").on("click", function() {
+			timer.score++
+
+			if (timer.number != 0) {
+			$("#score").html("Guessed Correctly: " + timer.score)
+			$("#question").html(choices)
+			}
+		})
+
+	}
 
 };
 
@@ -49,8 +74,7 @@ var timer = {
 		intervalId = setInterval(function() {
 			timer.timer()
 		}, 1000);
-
-		// timer.question(randNum);
+			timer.question();
 	
 		if (timer.number === 0) {
 			timer.number = 5;
@@ -77,5 +101,8 @@ var timer = {
 		timer.reset();
 
 	});
+
+
+	
 
 });
