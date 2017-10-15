@@ -8,10 +8,8 @@ var timer = {
 	running: false,
 	score: 0,
 	questions: { 
-		question1: ["How many inches in a foot?"],
-		answer1: [12, 10, 9, 4],
-		question2: ["Guess my favorite color!"],
-		answer2: ["Blue", "Green", "Purple", "Orange"],
+		question1: ["How many inches in a foot?", "Guess my favorite color!", "Testing2"],
+		answer1: [[12, 10, 9, 4], ["Blue", "Green", "Purple", "Orange"], ["ans1", "ans2", "ans3", "ans4"]]
 
 		},
 
@@ -44,26 +42,34 @@ var timer = {
 	question: function() {
 
 
+	for (var i = 0; i < 3; i++){
 
-		var choices = "<p class='text-center'>1." + timer.questions.question1[0] + "</p>" +
+
+				var choices = "<p class='text-center'>" + timer.questions.question1[i] + "</p>" +
 									"<ul class='text-center'>" +
-										"<input type='radio' name='q1' value='a' class='q1a'><label for='q1a'>" + timer.questions.answer1[0] + "</label><br/>" +
-										"<input type='radio' name='q1' value='b' class='q1b'><label for='q1b'>" + timer.questions.answer1[1] + "</label><br/>" +
-										"<input type='radio' name='q1' value='c' class='q1c'><label for='q1c'>" + timer.questions.answer1[2] + "</label><br/>" +
-										"<input type='radio' name='q1' value='d' class='q1d'><label for='q1d'>" + timer.questions.answer1[3] + "</label><br/>" +
+										"<input type='radio' name='q1' value='a' class='q1a'><label for='q1a'>" + timer.questions.answer1[i][0] + "</label><br/>" +
+										"<input type='radio' name='q1' value='b' class='q1b'><label for='q1b'>" + timer.questions.answer1[i][1] + "</label><br/>" +
+										"<input type='radio' name='q1' value='c' class='q1c'><label for='q1c'>" + timer.questions.answer1[i][2] + "</label><br/>" +
+										"<input type='radio' name='q1' value='d' class='q1d'><label for='q1d'>" + timer.questions.answer1[i][3] + "</label><br/>" +
 									"</ul>"
-									
+
+				//**current bug, I was having issues with my for loop creating a .html and then stopping in the loop until i "click" the answer, then continueing the loop
+				//**so i switched it to .append(choices) so that itll at least show all the questions! For now, the current answer is ALWAYS the first choice...
+				$("#question").append(choices)
+
+				//**current bug, it only allows for q1a to be the answer and you can only choose 1 answer at a time and itll delete the old one.**
+			}
 		//create an array of questions and answers to allow to be input into the variable which therefore would be put into the for loop below.	
 									
-
-		$("#question").append(choices)
+		console.log(timer.questions.answer1[0][0])
 
 		$(".q1a").on("click", function() {
-			timer.score++
-
-			if (timer.number != 0) {
+//**current bug, when you pause and restart the game.. it adds an additional point**
+			if (timer.number != 0 && timer.running === true) {
+				timer.score++
 			$("#score").html("Guessed Correctly: " + timer.score)
-			$("#question").html(choices)
+
+			
 
 			//when you click on the correct answer q1a, then grab a new question with new answers from array. Repeat this until number equals 0. This would require a for loop and
 			//either a .append() or .html() to include new question with answers 
