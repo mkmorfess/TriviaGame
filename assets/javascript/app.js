@@ -43,6 +43,8 @@ var timer = {
 
 	question: function() {
 
+
+
 		var choices = "<p class='text-center'>1." + timer.questions.question1[0] + "</p>" +
 									"<ul class='text-center'>" +
 										"<input type='radio' name='q1' value='a' class='q1a'><label for='q1a'>" + timer.questions.answer1[0] + "</label><br/>" +
@@ -50,7 +52,9 @@ var timer = {
 										"<input type='radio' name='q1' value='c' class='q1c'><label for='q1c'>" + timer.questions.answer1[2] + "</label><br/>" +
 										"<input type='radio' name='q1' value='d' class='q1d'><label for='q1d'>" + timer.questions.answer1[3] + "</label><br/>" +
 									"</ul>"
-
+									
+		//create an array of questions and answers to allow to be input into the variable which therefore would be put into the for loop below.	
+									
 
 		$("#question").append(choices)
 
@@ -60,9 +64,13 @@ var timer = {
 			if (timer.number != 0) {
 			$("#score").html("Guessed Correctly: " + timer.score)
 			$("#question").html(choices)
+
+			//when you click on the correct answer q1a, then grab a new question with new answers from array. Repeat this until number equals 0. This would require a for loop and
+			//either a .append() or .html() to include new question with answers 
 			}
 		})
 
+	
 	}
 
 };
