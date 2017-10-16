@@ -67,7 +67,7 @@ var timer = {
 //**current bug, when you pause and restart the game.. it adds an additional point**
 			if (timer.number != 0 && timer.running === true) {
 				timer.score++
-			$("#score").html("Guessed Correctly: " + timer.score)
+				$("#score").html("Guessed Correctly: " + timer.score)
 
 			
 
@@ -82,13 +82,24 @@ var timer = {
 };
 
 	$("#start").on("click", function() {
-
+		$("#score").html("Guessed Correctly: " + timer.score)
 		$("#display").html("<h2>" + timer.number + "</h2>");
 		timer.running = true;
 		intervalId = setInterval(function() {
 			timer.timer()
 		}, 1000);
 			timer.question();
+
+			//**attempted to add the questions in a different way using a random method**
+			// var number = Math.floor((Math.random() * timer.questions.question1.length));
+			// $("#question").text(timer.questions.question1[number])
+
+			// if (timer.questions.question1[number] === timer.questions.question1[0]) {
+			// 	$("#question").append(timer.questions.answer1[0][0])
+			// 	$("#question").append(timer.questions.answer1[0][1])
+			// 	$("#question").append(timer.questions.answer1[0][2])
+			// 	$("#question").append(timer.questions.answer1[0][3])
+			// }
 	
 		if (timer.number === 0) {
 			timer.number = 5;
