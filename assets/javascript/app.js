@@ -7,11 +7,37 @@ var timer = {
 	number: 5,
 	running: false,
 	score: 0,
-	questions: { 
-		question1: ["How many inches in a foot?", "Guess my favorite color!", "Testing2"],
-		answer1: [[12, 10, 9, 4], ["Blue", "Green", "Purple", "Orange"], ["ans1", "ans2", "ans3", "ans4"]]
+	// questions: { 
+	// 	question1: ["How many inches in a foot?", "Guess my favorite color!", "Testing2"],
+	// 	answer1: [[12, 10, 9, 4], ["Blue", "Green", "Purple", "Orange"], ["ans1", "ans2", "ans3", "ans4"]]
+
+	// 	},
+		questionsArray: [{
+			quest1: "q1", 
+			answerArray1: ["1", ""],
+			correct: "1"
 
 		},
+
+			{
+			quest1: "q2",
+			answerArray1: ["2",""],
+			correct: "2"
+		},
+
+		{
+			quest1: "q3",
+			answerArray1: ["3",""],
+			correct: "3"
+		}],
+
+		// [{
+		// 	quest2: "q2",
+		// 	answerArray2: ["2",""],
+		// 	correct: "2"
+
+
+		// }]
 
 	timer: function() {
 
@@ -39,35 +65,64 @@ var timer = {
 
 	},
 
+	startGame: function() {
+
+	$("#start").on("click", function() {
+
+	}
+
+)},
+
 	question: function() {
 
 
-	for (var i = 0; i < 3; i++){
+	for (var i = 0; i < 1; i++){
 
 
-				var choices = "<p class='text-center'>" + timer.questions.question1[i] + "</p>" +
+				var choices = "<p class='text-center'>" + timer.questionsArray[i].quest1 + "</p>" +
 									"<ul class='text-center'>" +
-										"<input type='radio' name='q1' value='a' class='q1a'><label for='q1a'>" + timer.questions.answer1[i][0] + "</label><br/>" +
-										"<input type='radio' name='q1' value='b' class='q1b'><label for='q1b'>" + timer.questions.answer1[i][1] + "</label><br/>" +
-										"<input type='radio' name='q1' value='c' class='q1c'><label for='q1c'>" + timer.questions.answer1[i][2] + "</label><br/>" +
-										"<input type='radio' name='q1' value='d' class='q1d'><label for='q1d'>" + timer.questions.answer1[i][3] + "</label><br/>" +
+										"<input type='radio' name='q'" + [i] + "value='a' class='q1a'><label for='q1a'>" + timer.questionsArray[i].answerArray1 + "</label><br/>" +
+										"<input type='radio' name='q'" + [i] + "value='b' class='q1b'><label for='q1b'>" + timer.questionsArray[i].answerArray1 + "</label><br/>" +
+										"<input type='radio' name='q'" + [i] + "value='c' class='q1c'><label for='q1c'>" + timer.questionsArray[i].answerArray1 + "</label><br/>" +
+										"<input type='radio' name='q'" + [i] + "value='d' class='q1d'><label for='q1d'>" + timer.questionsArray[i].answerArray1 + "</label><br/>" +
 									"</ul>"
+
+									//check radio button on bootstrap
 
 				//**current bug, I was having issues with my for loop creating a .html and then stopping in the loop until i "click" the answer, then continueing the loop
 				//**so i switched it to .append(choices) so that itll at least show all the questions! For now, the current answer is ALWAYS the first choice...
-				$("#question").append(choices)
+				$("#question").html(choices)
 
 				//**current bug, it only allows for q1a to be the answer and you can only choose 1 answer at a time and itll delete the old one.**
 			}
 		//create an array of questions and answers to allow to be input into the variable which therefore would be put into the for loop below.	
 									
-		console.log(timer.questions.answer1[0][0])
+		// console.log(timer.questions.answer1[0][0])
 
 		$(".q1a").on("click", function() {
 //**current bug, when you pause and restart the game.. it adds an additional point**
 			if (timer.number != 0 && timer.running === true) {
 				timer.score++
 				$("#score").html("Guessed Correctly: " + timer.score)
+
+				for (var i = 1; i < timer.questionsArray.length; i++) {
+
+						choices = "<p class='text-center'>" + timer.questionsArray[i].quest1 + "</p>" +
+									"<ul class='text-center'>" +
+										"<input type='radio' name='q'" + [i] + "value='a' class='q1a'><label for='q1a'>" + timer.questionsArray[i].answerArray1[i] + "</label><br/>" +
+										"<input type='radio' name='q'" + [i] + "value='b' class='q1b'><label for='q1b'>" + timer.questionsArray[i].answerArray1[i] + "</label><br/>" +
+										"<input type='radio' name='q'" + [i] + "value='c' class='q1c'><label for='q1c'>" + timer.questionsArray[i].answerArray1[i] + "</label><br/>" +
+										"<input type='radio' name='q'" + [i] + "value='d' class='q1d'><label for='q1d'>" + timer.questionsArray[i].answerArray1[i] + "</label><br/>" +
+									"</ul>"
+
+
+										$("#question").html(choices)
+
+										return false;
+
+							// if ()
+
+				}
 
 			
 
